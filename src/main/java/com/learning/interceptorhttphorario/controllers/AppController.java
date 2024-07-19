@@ -18,7 +18,7 @@ public class AppController {
     {
         Map<String, Object> data = new HashMap<>();
         data.put("Title", "Biennvenidos al sistema");
-        data.put("time", new Date());
+        data.put("Date now", new Date().toString());
         data.put("message",request.getAttribute("message"));
         return ResponseEntity.ok(data);
     }

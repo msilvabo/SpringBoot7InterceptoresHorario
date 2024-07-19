@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
+@Component("calendarInterceptor")
 public class CalendarInterceptor implements HandlerInterceptor {
 
     @Value("${config.calendar.open}")
@@ -33,7 +33,6 @@ public class CalendarInterceptor implements HandlerInterceptor {
             message.append(close);
             message.append(" -- la hora actual es ");
             message.append( new Date().toString());
-            message.append("  esta fuera de horario, favor intente mas tarde... Gracias por su visitar");
             request.setAttribute("message", message.toString());
             return true;
         }
@@ -47,7 +46,7 @@ public class CalendarInterceptor implements HandlerInterceptor {
         message.append(close);
         message.append(" horas..... Gracias");
         data.put("message", message.toString());
-        data.put("date", new Date());
+        data.put("date now", new Date().toString());
         response.setContentType("application/json");
         response.setStatus(401);
         response.getWriter().write(mapper.writeValueAsString(data));
